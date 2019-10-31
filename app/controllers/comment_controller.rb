@@ -6,13 +6,21 @@ class CommentController < ApplicationController
 
     def create
       @gossip = Gossip.find(params[:id])
-      @g_id = @gossip.id
-      @comment = Comment.new(gossip_id: @g_id,user_id: "1", content:params[:content])
-
-        if @comment.save
-          redirect_to welcome_index_path
-          else          
-        end
+      #@g_id = @gossip.id
+      #@comment = Comment.new(gossip_id: params[:gossip_id],user_id: params[:session_id], content:params[:content])
+      #puts @commentà
+      #redirect_to welcome_index_path
+      @create_comment = Comment.new(content: params[:content], gossip: @gossip, user: params[:session_id])
+      puts '$' * 60
+      puts params
+      puts '$' * 60
+      if @create_comment.save
+        flash[:success] = "BRAVO, votre commentaire a bien été uploadé"
+        redirect_to gossip_path(@create_comment.gossip.id)
+      else
+        flash[:error] = "Try again"
+        redirect_to gossip_path(@create_comment.gossip.id)
+      end
     end
 
 
