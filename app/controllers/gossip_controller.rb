@@ -6,16 +6,17 @@ class GossipController < ApplicationController
   end
 
   def create
-  id = session[:user_id]
-  @user = User.find(id)
-    #anonymous=User.new(first_name:"Anonymous", last_name:"unknown",age: 99,description: "unknown",email:"unknown#{rand(1000)}@mail.com",city_id:City.all.sample.id)
-    #anonymous.save
+    #id = session[:user_id]
+    #@user = User.find(id)
+    #@gossip = Gossip.create(gossip_params)
+    #@gossip.user = User.find_by(id: session[:user_id])
+    anonymous=User.new(first_name:"Anonymous", last_name:"unknown",age: 99,description: "unknown",email:"unknown#{rand(1000)}@mail.com",city_id:City.all.sample.id)
+    anonymous.save
   	@gossip=Gossip.new(title: params[:gossip_title], content: params[:gossip_content], user_id: session[:user_id])
       if @gossip.save
-        render 'index'
+        redirect_to welcome_index_path
       else
-        anonymous.destroy
-        render 'new'
+        render :new
       end
   end
 

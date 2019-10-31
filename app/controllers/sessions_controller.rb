@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
   puts"========================================================================================"
   # on vérifie si l'utilisateur existe bien ET si on arrive à l'authentifier (méthode bcrypt) avec le mot de passe
 		if user && user.authenticate(params[:password])
-	  	#flash.now[:danger] = 'Bien inscrit!'
+	  	flash[:notice] = 'Tu es bien connecté !'
 	    session[:user_id] = user.id
 			redirect_to welcome_index_path
 	  else
@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
 
 	def destroy
 		session.delete(:user_id)
-		redirect_to gossips_path
+		redirect_to welcome_index_path
 	end
 
 end

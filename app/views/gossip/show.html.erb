@@ -10,7 +10,8 @@
   <div class="card-body">
     <h5><strong>Titre : </strong><%= Gossip.find(params[:id]).title%><br/>
     <strong>Contenu du Gossip : </strong><%= Gossip.find(params[:id]).content%><br/>
-    <strong>Auteur : </strong> <%= User.find(Gossip.find(params[:id]).user_id).first_name %> <%= User.find(Gossip.find(params[:id]).user_id).last_name %></h5>
+    <strong>Auteur : </strong> <%= User.find(Gossip.find(params[:id]).user_id).first_name %> <%= User.find(Gossip.find(params[:id]).user_id).last_name %><br/>
+    <strong>Date de création : </strong><%=  @gossip.created_at %><br/><h5>
     <h5>Tu veux checker la page de l'auteur de ce potin ? <a class="btn btn-info" <%= link_to "Go", author_path(Gossip.find(params[:id]).user_id.to_i)%> </a>
   </div>
 </div>
