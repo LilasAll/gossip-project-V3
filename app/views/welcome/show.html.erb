@@ -1,0 +1,31 @@
+<div class="card text-center mb-3">
+  <div class="card-body">
+    <h5 class="card-title font-weight-bold">BIENVENUE A TOI<%=params[:id]%> !</h5>
+    <p class="card-text text-white">Tu es ici car tu aimes les potins? Tu ne seras pas déçu!!</p>
+    <a class="btn btn-dark" <%= link_to "Soumettre un Gossip", new_gossip_path%></a>  </div>
+</div>
+
+<section>
+<div class="card-deck">
+<%Gossip.all.each do |gossip|%>
+<div class="col-sm-4 mb-3">
+<div class="card">
+  <div class="card-header">
+    Gossip #<%=gossip.id%>
+  </div>
+  <div class="card-body align-center">
+    <blockquote class="blockquote mb-0">
+      <p><%=gossip.title%></p>
+      <footer class="blockquote-footer">
+      <div class="row justify-content-between align-self-center mx-3">
+      	<p><%=User.find(gossip.user_id).first_name%> <%=User.find(gossip.user_id).last_name%></p>
+      	<a class="btn btn-info" <%= link_to "Voir", gossip_path(gossip.id)%></a>
+      </div>
+      </footer>
+    </blockquote>
+  </div>
+</div>
+</div>
+<%end%>
+</div>
+</section>

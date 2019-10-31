@@ -1,0 +1,18 @@
+<html>
+  <body>
+
+    <%= form_tag url_for(action: 'create'), method: "post" do %>
+
+      <%= label_tag 'Content' %>
+      <%= text_area_tag 'content' %>
+      <br /> <br />
+
+
+      <%= submit_tag "Create Post" %>
+
+    <% end %>
+
+    <!-- ... -->
+  </body>
+
+</html>

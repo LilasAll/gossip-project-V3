@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+<div class="card">
+    <div class="card-header">
+    <h1> Bienvenue à <%= User.find(params[:id]).city.name %> </h1>
+    </div>
+</div>
+
+<div class="text-center">
+	<br/>
+	<img src="https://cdn.pixabay.com/photo/2014/08/01/15/51/manhattan-407703_960_720.jpg">
+	<br/>
+	<h4><%= User.find(params[:id]).city.name %>, est une petite ville peu connue d'un endroit fort fort lointain.<br/></h4>
+</div>
+
+<div class="card">
+  <div class="card-header mb-3 card-header font-weight-bold text-center text-info">
+  <h1>Ci-dessous, vous trouverez la liste des potins écrits dans cette ville.</h1>
+</div>
+
+
+<div class="card-deck">
+<%Gossip.where(user_id:params[:id]).each do |gossip|%>
+  <div class="col-sm-4 mb-3">
+  <div class="card">
+    <div class="card-header">
+      Gossip #<%=gossip.id%>
+    </div>
+    <div class="card-body align-center">
+      <blockquote class="blockquote mb-0">
+        <p>Titre : <%=gossip.title%></p>
+        <p>Auteur : <%=User.find(gossip.user_id).first_name%> <%=User.find(gossip.user_id).last_name%></p>
+        	<a class="btn btn-info" <%= link_to "Voir", gossip_path(gossip.id)%></a>
+        
+      </blockquote>
+    </div>
+  </div>
+  </div>
+<%end%>
+</div>
+
+
+
+</body>
+</html>

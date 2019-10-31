@@ -1,0 +1,68 @@
+
+<div class="card">
+  <div class="card-header">
+    <div class="font-weight-bold text-center"><h1>Gossip n°<%=params[:id]%></h1></div>
+    <div class="text-muted text-center"><%Gossip.find(params[:id]).tags.each do |item| %> 
+    	Tag: #<%=item.title%>
+    	<%end%>
+    	</div>
+  </div>
+  <div class="card-body">
+    <h5><strong>Titre : </strong><%= Gossip.find(params[:id]).title%><br/>
+    <strong>Contenu du Gossip : </strong><%= Gossip.find(params[:id]).content%><br/>
+    <strong>Auteur : </strong> <%= User.find(Gossip.find(params[:id]).user_id).first_name %> <%= User.find(Gossip.find(params[:id]).user_id).last_name %></h5>
+    <h5>Tu veux checker la page de l'auteur de ce potin ? <a class="btn btn-info" <%= link_to "Go", author_path(Gossip.find(params[:id]).user_id.to_i)%> </a>
+  </div>
+</div>
+<div class="container"> 
+  <div class="text">
+    <br/>
+    <center>
+      <a class="btn btn-info" <%= link_to "Editer le potin", edit_gossip_path(Gossip.find(@gossip.id))%> </a><br/>
+      <br/>
+      <a class="btn btn-danger" href="<%= gossip_path(@gossip.id) %>" data-confirm="T'es sur de toi?" data-method="DELETE" role="button">Supprimer le potin</a>
+    </center>
+  </div>
+</div>
+
+<br/>
+<br/>
+<center><h1> Balance ton comm's</h1></center>
+
+
+<%= form_tag url_for(controller: 'comment', action: 'create', method: 'post') do%>
+        <input type="hidden" name="authenticity_token" value= <%= form_authenticity_token %> >
+        <br />
+        <div class="row justify-content-center align-self-center mx-5">
+          <div class="col-3 text-center font-weight-bold">
+          <%= label_tag 'Ton Commentaire : ' %>
+          </div>
+          <div class="col-3">
+          <%= text_field_tag 'content', value = nil, options = {style:"height:30px;width:300px"} %>
+          </div>
+        </div>     
+        <br />
+        <br />
+        <center><%= submit_tag "Balance la sauce", class: 'btn btn-info btn-submit'  %></center>
+      <% end %>
+      <br/>
+
+<center><h1> Les commentaires précédents : </h1></center>
+<div class="card-deck">
+  <% Comment.where(gossip_id:params[:id]).each do |comment| %>
+    <div class="col-sm-3 mb-3">
+    <div class="card">
+      <div class="card-header">
+        Commentaire :
+      </div>
+      <div class="card-body align-center">
+        <blockquote class="blockquote mb-0">
+          <p>Contenu :  <%= comment.content %></p>
+          <p>Auteur : <%=User.find(@gossip.user_id).first_name%> <%=User.find(@gossip.user_id).last_name%></p>
+          <center><a class="btn btn-light" <%= link_to "Modifier", edit_comment_path(comment.id)%></a></center>     
+        </blockquote>
+      </div>
+    </div>
+    </div>
+  <%end%>
+</div>
