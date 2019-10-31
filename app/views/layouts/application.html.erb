@@ -37,6 +37,9 @@
       <li class="nav-item">
         <a class="nav-link text-light" <%= link_to "Se déconnecter", session_path(session.id), method: :delete %></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" <%= link_to "S'inscrire", new_user_path %></a>
+      </li>
     </ul>
   </div>
 </nav>

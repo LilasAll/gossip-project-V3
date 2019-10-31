@@ -1,0 +1,69 @@
+
+
+<div class="container">
+	<br/>
+	<center><h1>Inscrit toi ! </h1></center>
+      <%= form_tag url_for(action: 'create'), method: "post" do %>
+        <input type="hidden" name="authenticity_token" value= <%= form_authenticity_token %> >
+        <br />
+        <div class="row justify-content-center align-self-center mx-5">
+          <div class="col-3 text-center font-weight-bold">
+          <%= label_tag 'Ton email: ' %>
+          </div>
+          <div class="col-3">
+          <%= text_field_tag 'email', value = nil, options = {style:"height:30px;width:300px"} %>
+          </div>
+        </div>     
+        <br />
+
+        <div class="row justify-content-center align-self-center mx-5">
+          <div class="col-3 text-center font-weight-bold">
+            <%= label_tag 'Prénom : ' %>
+          </div>
+          <div class="col-3">
+            <%= text_field_tag 'first_name', value = nil, options = {style:"height:100px;width:300px;vertical-align:text-top"}%>
+          </div>
+        </div>
+        <br />
+        <div class="row justify-content-center align-self-center mx-5">
+          <div class="col-3 text-center font-weight-bold">
+            <%= label_tag 'Nom : ' %>
+          </div>
+          <div class="col-3">
+            <%= text_field_tag 'last_name', value = nil, options = {style:"height:100px;width:300px;vertical-align:text-top"}%>
+          </div>
+        </div>
+        <br />
+         <div class="row justify-content-center align-self-center mx-5">
+          <div class="col-3 text-center font-weight-bold">
+            <%= label_tag 'Ton age : ' %>
+          </div>
+          <div class="col-3">
+            <%= text_field_tag 'age', value = nil, options = {style:"height:100px;width:300px;vertical-align:text-top"}%>
+          </div>
+        </div>
+        <div class="row justify-content-center align-self-center mx-5">
+          <div class="col-3 text-center font-weight-bold">
+            <%= label_tag 'Mot de passe : ' %>
+          </div>
+          <div class="col-3">
+            <%= text_field_tag 'password', value = nil, options = {style:"height:100px;width:300px;vertical-align:text-top"}%>
+          </div>
+        </div>
+        <br />
+        <div class="row justify-content-center align-self-center mx-5">
+          <div class="col-3 text-center font-weight-bold">
+            <%= label_tag 'Décris-toi en qql mots: ' %>
+          </div>
+          <div class="col-3">
+            <%= text_field_tag 'description', value = nil, options = {style:"height:100px;width:300px;vertical-align:text-top"}%>
+          </div>
+        </div>
+        <br />
+        <center><%= submit_tag "Je m'inscris !", class: 'btn btn-info btn-lg btn-submit'  %>
+      <% end %>
+      <br/>
+      <br/>
+			<img src="https://media.giphy.com/media/xHMIDAy1qkzNS/giphy.gif" class="rounded" alt="..."></center>
+			<br/>
+      <br/>
