@@ -3,7 +3,7 @@ require 'database_cleaner' #permet de réinitialiser la base à chaque relance d
 DatabaseCleaner.strategy = :truncation
 DatabaseCleaner.clean
 
-20.times do
+50.times do
 	City.create(name:Faker::Address.city, zip_code:Faker::Address.zip_code)
 end
 

@@ -11,10 +11,10 @@
 
 <% flash.each do |key, value| %>
     <%= content_tag(:div, class: "alert alert-#{key} alert-dismissable") do %>
-    <%= value %>
+    <h1><%= value %></h1>
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     <!-- Souhaite la bienvenue à la personne connectée -->
-    <h2 class = text-center>Bienvenue <%= User.find_by(id: session[:user_id]).first_name %> !</h2>   
+    <h1 class = text-center>Bienvenue <%= User.find_by(id: session[:user_id]).first_name %> !</h1>   
     <% end %> 
     <% end %>
 
