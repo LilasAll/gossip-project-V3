@@ -1,4 +1,5 @@
 class GossipController < ApplicationController
+  
   def new
   	Gossip.new
     @comment = Comment.new

@@ -14,18 +14,19 @@ class SessionsController < ApplicationController
   puts params
   puts"========================================================================================"
   # on vérifie si l'utilisateur existe bien ET si on arrive à l'authentifier (méthode bcrypt) avec le mot de passe
-		if user && user.authenticate(password: params[:password])
-	  	flash.now[:danger] = 'Bien inscrit!'
+		if user && user.authenticate(params[:password])
+	  	#flash.now[:danger] = 'Bien inscrit!'
 	    session[:user_id] = user.id
-			redirect_to gossips_path
+			redirect_to welcome_index_path
 	  else
-	    flash.now[:danger] = 'Invalid email/password combination'
-	    redirect_to welcome_index_path
+	    #flash.now[:danger] = 'Invalid email/password combination'
+	    render 'new'
 	  end
 	end
 
 	def destroy
 		session.delete(:user_id)
+		redirect_to gossips_path
 	end
 
 end
